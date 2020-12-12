@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <title><%= content_for?(:title) ? yield(:title) : "Bbq" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Bvvvvvbq" %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -30,7 +30,6 @@
 </div>
 </div>
 
-
     <div class="container">
       <div class="row">
         <div class="col-lg-9">
@@ -42,7 +41,7 @@
       </div><!--/row-->
 
       <footer>
-        <p>&copy; Company 2016</p>
+        <p>&copy; <%= Time.now.year %></p>
       </footer>
 
     </div> <!-- /container -->
