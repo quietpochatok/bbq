@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
     )
   end
 
+  # добавили, чтобы кнопка изменить событие было только у создателя
   def current_user_can_edit?(event)
     user_signed_in? && event.user == current_user
   end
