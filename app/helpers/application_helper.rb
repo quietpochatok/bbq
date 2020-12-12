@@ -1,4 +1,5 @@
 module ApplicationHelper
+  # здесь только доступно во вьюхах!
   def bootstrap_flash(opts = {})
   flash.each do |msg_type, message|
     concat(content_tag(:div, message, class: "alert #{bootstrap_class_for(msg_type)}", role: "alert") do
@@ -7,6 +8,10 @@ module ApplicationHelper
     end)
   end
   nil
+end
+
+def user_avatar(user)
+asset_pack_path('media/images/mangal.png')
 end
 private
 def bootstrap_class_for(flash_type)
