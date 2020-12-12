@@ -16,7 +16,7 @@ module ApplicationHelper
 
   def minimum_password_length
     if @minimum_password_length
-     "Password #{@minimum_password_length} characters min"
+     "Password #{@minimum_password_length} characters minimum"
     end
   end
 

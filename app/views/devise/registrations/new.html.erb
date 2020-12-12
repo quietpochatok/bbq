@@ -10,13 +10,13 @@
 
     <div class="field">
       <%= f.email_field :email, autofocus: true, autocomplete: "email",
-            placeholder: "E-mail", class: "form-control mb-3 mt-3" %>
+        placeholder: "E-mail", class: "form-control mb-3 mt-3" %>
     </div>
 
     <div class="field">
-      <%= f.password_field :password, autocomplete: "new-password", placeholder: minimum_password_length, class: "form-control mb-3 mt-3"%>
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password", class: "form-control mb-3 mt-3"%>
+      <span><%= minimum_password_length%></span>
     </div>
-
     <div class="field">
       <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password confirmation", class: "form-control mb-3 mt-3" %>
     </div>
