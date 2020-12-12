@@ -9,6 +9,10 @@ gem 'puma', '~> 4.1'
 gem 'webpacker', '~> 4.0'
 gem 'devise'
 
+group :production do
+  gem 'pg'
+end
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
