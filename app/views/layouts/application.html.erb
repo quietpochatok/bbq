@@ -25,7 +25,7 @@
       </li>
       <li class="nav-item">
         <%= link_to 'Выйти', destroy_user_session_path,
-                                    method: :delete, class: 'nav-link' %>
+           method: :delete, class: 'nav-link' %>
       </li>
        <% else %>
       <li class="nav-item">
@@ -42,12 +42,15 @@
 
                               <div class="container">
                                 <div class="row">
-                                  <div class=".col-lg-12">
+                                  <div class=".col-9">
                                     <%= bootstrap_flash %>
-                                    <%= yield %>
+                                    
+                                    <div style="height: 100%;">
+                                      <%= yield %>
+                                    </div>
                                   </div>
-                                  <div class="col-lg-1">
-                                  </div><!--/span-->
+                                   <div class="col-lg-3">
+                                  </div> <!--/span-->
                                 </div><!--/row-->
 
                                 <footer>
