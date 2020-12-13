@@ -18,3 +18,14 @@ ru:
         address: 'Место проведения'
         datetime: 'Дата и время'
         description: 'Описание'
+  controllers:
+    events:
+      created: 'Событие было успешно создано, ЙО!'
+      updated: 'Вы обновили мероприятие'
+      destroyed: 'Вы удалили мероприятие :('
+    users:
+      updated: 'Вы обновили свой профиль'
+
+  app:
+    name: 'Шашлыки'
+    company: 'Хороший программист'
