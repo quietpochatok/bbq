@@ -3,31 +3,31 @@
     Log in
   </div>
   <div class="card-body">
-  <h5 class="card-title">Welcome!</h5>
+    <h5 class="card-title">Welcome!</h5>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-  <div class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "E-mail", class: "form-control mb-3 mt-3" %>
+      <div class="field">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "E-mail", class: "form-control mb-3 mt-3" %>
+      </div>
+
+      <div class="field">
+        <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", class: "form-control mb-3 mt-3" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="custom-control custom-checkbox">
+          <%= f.check_box :remember_me, class: "custom-control-input" %>
+          <%= f.label :remember_me, class: "custom-control-label" %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.submit "Log in", class: "btn btn-primary mt-3"%>
+      </div>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", class: "form-control mb-3 mt-3" %>
+  <div class="card-body">
+    <p>You have not account? <%= render "devise/shared/links" %></p> 
   </div>
-
-  <% if devise_mapping.rememberable? %>
-          <div class="custom-control custom-checkbox">
-            <%= f.check_box :remember_me, class: "custom-control-input" %>
-            <%= f.label :remember_me, class: "custom-control-label" %>
-          </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in", class: "btn btn-primary mt-3"%>
-  </div>
-<% end %>
-</div>
-    <div class="card-body">
-      <p>You have not account? <%= render "devise/shared/links" %></p> 
-    </div>
 </div>
