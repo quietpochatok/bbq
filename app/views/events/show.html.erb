@@ -1,3 +1,4 @@
+<!-- вьюха с событием на отдельной странице, если кликнуть от главной от пользователя. -->
 <div class="event">
   <div class="event-info row">
     <div class="col-md-12">
@@ -8,7 +9,8 @@
         <div class="col-md-6">
           <div class="event-description">
             <h1><%= @event.title %></h1>
-            <h3><%= @event.datetime %></h3>
+            <!-- Нужно указать формат , в геме russian всё это есть, а i18n предоставляет нам специальный хелпер l -->
+            <h3><%= l @event.datetime, format: :short %></h3>
             <h3><small><%= link_to @event.address,
                 "https://yandex.ru/maps/?text=#{@event.address}" %></small></h3>
             <p><%= @event.description %></p>
