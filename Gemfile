@@ -10,7 +10,7 @@ gem 'webpacker', '~> 4.0'
 gem 'devise'
 gem 'devise-i18n'
 gem 'russian'
-
+gem 'rails-i18n', '~> 6.0.0'
 
 group :production do
   gem 'pg'

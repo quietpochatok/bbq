@@ -29,3 +29,9 @@ ru:
   app:
     name: 'Шашлыки'
     company: 'Хороший программист'
+
+  # Склонятор ошибок
+  error:
+    one: '%{count} ошибка'
+    few: '%{count} ошибки'
+    many: '%{count} ошибок'
