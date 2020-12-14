@@ -1,44 +1,24 @@
 <div class="text-center">
   <h1><%= @user.name %></h1>
-<%= image_tag user_avatar(@user) %>
-<% if @user == current_user %>
-  <p class="buffer-top"><%= link_to 'Редактировать профиль', edit_user_path(@user), class: 'btn btn-default' %></p>
-<% end %>
+
+  <%= image_tag user_avatar(@user) %>
+
+  <% if @user == current_user %>
+    <p class="buffer-top"><%= link_to 'Редактировать профиль',
+      edit_user_path(@user), class: 'btn btn-default' %></p>
+  <% end %>
 
   <div class="row">
-  <div class="col-12">
-    <% if @user.events.any? %>
-      <h3>Организовал:</h3>
-      <div class="row">
-        <%= render partial: 'events/event', collection: @user.events %>
-      </div>
-    <% else %>
-      <p class="buffer-top">Пользователь пока не организовал ни одного события</p>
-    <% end %>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="event-owner">
-    <h4>Зовет:</h4>
-      <p><%= render partial: 'users/user', object: @event.user %></p>
-  </div>
-  <div class="event-subscriptions">
-    <h4>Пойдут:</h4>
-    <div>
-      <p>
-      <%= render partial: 'subscriptions/subscription',
-        collection: @event.subscriptions.except(@new_subscription) %>
-      </p>
+    <div class="col-md-12">
+      <% if @user.events.any? %>
+        <h3>Организовал:</h3>
+        <div class="row">
+          <%= render partial: 'events/event', collection: @user.events %>
+        </div>
+      <% else %>
+        <p class="buffer-top">Пользователь пока не организовал ни одного
+          события</p>
+      <% end %>
     </div>
   </div>
-  <div class="event-subscription-form">
-    <h4>Я пойду:</h4>
-    <div>
-      <%= render partial: 'subscriptions/form', locals: {
-        subscription: @new_subscription || @event.subscriptions.build
-      } %>
-    </div>
-  </div>
-</div>
 </div>

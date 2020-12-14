@@ -11,7 +11,7 @@ module ApplicationHelper
   end
 
   def user_avatar(user)
-  asset_pack_path('media/images/mangal.png')
+    asset_pack_path('media/images/mangal.png')
   end
 
   def minimum_password_length
@@ -20,6 +20,9 @@ module ApplicationHelper
     end
   end
 
+  def fa_icon(icon_class)
+    content_tag 'span', '', class: "fa fa-#{icon_class}"
+  end
 
 private
   def bootstrap_class_for(flash_type)
