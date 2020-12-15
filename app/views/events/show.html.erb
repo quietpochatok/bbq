@@ -16,14 +16,14 @@
             <p><%= @event.description %></p>
           </div>
           <% if current_user_can_edit?(@event) %>
-  <div class="buffer-both">
-    <%= link_to 'Изменить', edit_event_path(@event),
-      class: 'btn btn-primary' %>
-<div class="form-action buffer-top">
-      <%= link_to 'Удалить событие', @event, method: :delete, data: { confirm: "Really?" } %>
-    </div>
-   </div>
-<% end %>
+            <div class="buffer-both">
+              <%= link_to 'Изменить', edit_event_path(@event),
+              class: 'btn btn-primary' %>
+            </div>
+          <div class="buffer-both">
+            <%= link_to 'Удалить событие', @event, method: :delete, data: { confirm: "Really?" },
+              class: "btn btn-danger" %>
+        <% end %>
 
         </div>
       </div>
