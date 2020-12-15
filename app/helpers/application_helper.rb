@@ -11,7 +11,11 @@ module ApplicationHelper
   end
 
   def user_avatar(user)
-    asset_pack_path('media/images/mangal.png')
+      if user.avatar?
+        user.avatar.url
+      else
+        asset_pack_path('media/images/mangal.png')
+      end
   end
 
   def minimum_password_length

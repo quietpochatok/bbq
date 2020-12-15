@@ -17,7 +17,10 @@ class User < ApplicationRecord
   # validates :email, uniqueness: true
   # validates :email, format: /\A[a-zA-Z0-9\-_.]+@[a-zA-Z0-9\-_.]+\z/
   before_validation :set_name, on: :create
-after_commit :link_subscriptions, on: :create
+
+  after_commit :link_subscriptions, on: :create
+
+  mount_uploader :avatar, AvatarUploader
   private
 
     def set_name
