@@ -15,6 +15,9 @@ class Subscription < ApplicationRecord
 
   # Или один email может использоваться только один раз (если анонимная подписка)
   validates :user_email, uniqueness: {scope: :event_id}, unless: -> { user.present? }
+
+  validate :check_email_for_subs
+
   # Если есть юзер, выдаем его имя,
   # если нет – дергаем исходный метод
   def user_name
@@ -32,6 +35,13 @@ class Subscription < ApplicationRecord
       user.email
     else
       super
+    end
+  end
+
+  def check_email_for_subs
+    #if user_id.nil? && user_email.presence && User.find_by_email(user_email).presence
+    if user_id.nil? && user_email.presence && User.find_by(email: user_email).presence
+      errors.add(:email, 'Must be friends to leave a comment')
     end
   end
 end

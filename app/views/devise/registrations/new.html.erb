@@ -1,13 +1,24 @@
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class=".col-md-4">
 <div class="card">
   <div class="card-header">
-    Sing_up
+    Зарегистрироваться 
   </div>
   <div class="card-body">
-    <h5 class="card-title">Fill in the registration fields</h5>
+    <h5 class="card-title">Заполните верно поля</h5>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col col-lg-12">
+  <%= render "devise/shared/error_messages", resource: resource %>
+</div>
+</div>
+</div>
+  
 
-      <%= render "devise/shared/error_messages", resource: resource %>
+      
 
       <div class="field">
         <%= f.email_field :email, autofocus: true, autocomplete: "email",
@@ -29,8 +40,10 @@
   </div>
 
   <div class="card-body">
-    <p>You have account? <%= render "devise/shared/links" %></p> 
+    <p>У вас есть аккаунт? <%= render "devise/shared/links" %></p> 
   </div>
+</div>
+</div>
 </div>
 
 
