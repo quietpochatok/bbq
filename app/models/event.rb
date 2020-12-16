@@ -4,8 +4,10 @@ class Event < ApplicationRecord
   # У события много комментариев и подписок
   has_many :comments, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
+  has_many :photos
+
   # У события много подписчиков (объекты User), через таблицу subscriptions,
-  # по ключу user_id
+  # по ключу user_id !!!!
   has_many :subscribers, through: :subscriptions, source: :user
   # В Rails 5 связи belongs_to :user валидируются :user  по умолчанию
   # Валидируем заголовок, он не может быть длиннее 255 букв

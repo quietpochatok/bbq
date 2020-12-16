@@ -1,0 +1,13 @@
+<!-- Он похож на код в форме для коммента. Только мы ещё добавили параметр multipart, который позволяет отправлять не только текстовое содержимое. -->
+<%= form_for [@event, photo], html: { multipart: true } do |f| %>
+  <%= render partial: 'partials/form_errors', locals: {model: photo} %>
+
+  <div class="form-group">
+    <%= f.label :photo %>
+    <%= f.file_field :photo %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Загрузить', class: 'btn btn-primary' %>
+  </div>
+<% end %>
