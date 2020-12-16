@@ -4,7 +4,7 @@
     <%= link_to photo.photo.url do %>
     <!-- без кавычек не работает, в консоли через pry
     проверил там все окей пути работают, не знаю что сделать -->
-    image_tag("#{photo.photo.thumb.url}
+    <%= image_tag(photo.photo.thumb.url)%>
     <% end %>
   Добавил <%= render partial: 'users/user', object: photo.user %>
 </div>
