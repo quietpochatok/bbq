@@ -15,4 +15,8 @@ class Event < ApplicationRecord
   # У события должны быть заполнены место и время
   validates :address, presence: true
   validates :datetime, presence: true
+
+  def visitors
+    (subscribers + [user]).uniq
+  end
 end

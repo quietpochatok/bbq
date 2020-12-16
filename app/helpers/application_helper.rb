@@ -18,29 +18,30 @@ module ApplicationHelper
     end
   end
 
-    # Аналогично user_avatar, только возвращает миниатюрную версию
+  # Возвращает миниатюрную версию фотки
   def user_avatar_thumb(user)
     if user.avatar.file.present?
       user.avatar.thumb.url
     else
-      asset_path('mangal.png')
+      asset_pack_path('media/images/mangal.png')
     end
   end
 
-  # Возвращает адерс рандомной фотки события, если есть хотя бы одна. Или ссылку
-  # на дефолтную картинку.
   def event_photo(event)
     photos = event.photos.persisted
 
     if photos.any?
       photos.sample.photo.url
     else
-      asset_path('event.jpg')
+      asset_pack_path('media/images/event.jpg')
     end
   end
 
-  # Аналогично event_photo, только возвращает миниатюрную версию
+  # Возвращает миниатюрную версию фотки
   def event_thumb(event)
+    # добавлять фотографию к событию можно(есть болванка в контроллере events для этого)
+    # persisted нужно для того,чтобы фотка приклеп-я к событию попала в БД
+    # persisted - scope прописана в модели Photo, чтобы все это работало
     photos = event.photos.persisted
 
     if photos.any?
