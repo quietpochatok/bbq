@@ -39,6 +39,7 @@ class Subscription < ApplicationRecord
   end
 
   def check_email_for_subs
+    # unless !
     if user_id.nil? && user_email.presence && User.find_by_email(user_email).presence
     #unless !user_email.present? && !User.find_by(email: user_email).presence
     #if User.exists?(email: user_email)

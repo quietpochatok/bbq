@@ -15,6 +15,10 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'fog-aws'
 
+#gem 'dotenv-rails', groups: [:production]
+
+
+
 group :production do
   gem 'pg'
 end
@@ -22,6 +26,7 @@ end
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'sqlite3', '~> 1.4'
+  #gem "letter_opener"
 end
 
 group :development do

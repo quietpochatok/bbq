@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user_can_edit?
   helper_method :current_user_can_subs?
+  helper_method :event_photo_for_email
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(
@@ -24,5 +25,15 @@ class ApplicationController < ActionController::Base
 
   def current_user_can_subs?(event)
     event.user == current_user
+  end
+
+  def event_photo_for_email(event)
+    photos = event.photos.persisted
+
+    if photos.any?
+      photos.photo.url
+    else
+      asset_pack_path('media/images/event.jpg')
+    end
   end
 end
