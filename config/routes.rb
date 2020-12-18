@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :subscriptions, only: [:create, :destroy]
     # Вложенные в ресурс события ресурсы фотографий
     resources :photos, only: [:create, :destroy]
+
+    post :show, on: :member
   end
   # Не все действия поддерживаются – только show, edit, update
   resources :users, only: [:show, :edit, :update]

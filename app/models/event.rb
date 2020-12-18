@@ -16,7 +16,13 @@ class Event < ApplicationRecord
   validates :address, presence: true
   validates :datetime, presence: true
 
+# Метод, который возвращает всех, кто пойдет на событие:
+# всех подписавшихся и организатора
   def visitors
     (subscribers + [user]).uniq
   end
+def pincode_valid?(pin2chek)
+  pincode == pin2chek
+end
+
 end

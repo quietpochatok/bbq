@@ -4,6 +4,9 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show]
   before_action :set_current_user_event, only: [:edit, :update, :destroy]
 
+  # Проверка пин-кода перед отображением события
+  before_action :password_guard!, only: [:show]
+
   # GET /events
   def index
     @events = Event.all
@@ -71,6 +74,29 @@ class EventsController < ApplicationController
     # редактируем параметры события
     def event_params
       # params.fetch(:event, {})
-      params.require(:event).permit(:title, :address, :datetime, :description)
+      params.require(:event).permit(:title, :address, :datetime, :description, :pincode)
+    end
+
+    def password_guard!
+      # Если у события нет пин-кода, то охранять нечего
+      return true if @event.pincode.blank?
+      # Пин-код не нужен автору события
+      return true if signed_in? && current_user == @event.user
+
+      # Если нам передали код и он верный, сохраняем его в куки этого юзера
+      # Так юзеру не нужно будет вводить пин-код каждый раз
+      if params[:pincode].present? && @event.pincode_valid?(params[:pincode])
+        cookies.permanent["events_#{@event.id}_pincode"] = params[:pincode]
+      end
+
+      # Проверяем, верный ли в куках пин-код
+      # Если нет — ругаемся и рендерим форму ввода пин-кода
+      pincode = cookies.permanent["events_#{@event.id}_pincode"]
+      unless @event.pincode_valid?(pincode)
+        if params[:pincode].present?
+          flash.now[:alert] = I18n.t('controllers.events.wrong_pincode')
+        end
+        render 'password_form'
+      end
     end
 end
