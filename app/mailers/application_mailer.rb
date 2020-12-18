@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'https://sheltered-retreat-16079.herokuapp.com'
+  default from: 'sheltered-retreat-16079'
   layout 'mailer'
 end

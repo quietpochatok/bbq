@@ -51,7 +51,7 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  Это нужно, чтобы у Девайза правильно работала рассылка писем.
+  #Это нужно, чтобы у Девайза правильно работала рассылка писем.
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
   config.action_mailer.smtp_settings = {
