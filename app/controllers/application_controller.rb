@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
     )
   end
 
-  def current_user_can_subs?(event)
+  def current_user_can_subscribe?(event)
     event.user == current_user
   end
 
