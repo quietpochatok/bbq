@@ -5,15 +5,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bbq</title>
+    <script src="https://use.fontawesome.com/a75a7204ad.js"></script>
+              <script src="https://api-maps.yandex.ru/2.1/?apikey=d4eccc0c-6ed2-4aa3-95b9-3d0c6d24bd78&lang=ru_RU">
+    </script>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_pack_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
-    <script src="https://use.fontawesome.com/a75a7204ad.js"></script>
-   
- <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=d4eccc0c-6ed2-4aa3-95b9-3d0c6d24bd78"
-          type="text/javascript"></script>
   </head>
 
   <body>
@@ -47,8 +46,6 @@
 
       <div class="container-fluid">
         <%= bootstrap_flash %>
-             <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=90fb7a73-b3c0-410f-8775-baaa4934d433"
-          type="text/javascript"></script>
         <div style="height: 100%;">
           <%= yield %>
         </div>

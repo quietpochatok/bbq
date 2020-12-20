@@ -1,17 +1,13 @@
 <!-- вьюха с событием на отдельной странице, если кликнуть от главной от пользователя. -->
 <div class="event">
   <div class="event-info row">
-    <div class="col-md-12">
+    <div class="col-md-8">
             <%# Выводим произвольную фотку в качестве фона для шапки события %>
       <%= content_tag 'div', '', class: 'event-background',
         style: "background-image: url(#{event_photo(@event)})" %>
-<div class="col-md-4">
-      <div id="map"
-           style="width: 100%; height: 100%;">
-      </div>
-    </div>
+
       <div class="event-info-inner row">
-        <div class="col-md-6">
+        <div class="col-12">
           <div class="event-description">
             <h1><%= @event.title %></h1>
             <!-- Нужно указать формат , в геме russian всё это есть, а i18n предоставляет нам специальный хелпер l -->
@@ -35,7 +31,13 @@
         </div>
       </div>
     </div>
+        <div class="col-md-4">
+      <div id="map" data-address="<%= @event.address %>"
+           style="width: 100%; height: 100%;">
+      </div>
+    </div>
   </div>
+</div>
 
 
   <div class="row">
