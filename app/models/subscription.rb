@@ -16,8 +16,8 @@ class Subscription < ApplicationRecord
   # Или один email может использоваться только один раз (если анонимная подписка)
   validates :user_email, uniqueness: {scope: :event_id}, unless: -> { user.present? }
 
-  before_create :subscriber_verification_to_event_owner?
   validate :check_email_for_subs, unless: -> { user.present? }
+  validate :subscriber_verification_to_event_owner?
 
   # Если есть юзер, выдаем его имя,
   # если нет – дергаем исходный метод
@@ -49,6 +49,8 @@ class Subscription < ApplicationRecord
   end
 
   def subscriber_verification_to_event_owner?
-     current_user != event.user
+    if event.user == user
+      errors.add(:event, 'извините, но вы не можете на себя подписаться')
+    end
   end
 end

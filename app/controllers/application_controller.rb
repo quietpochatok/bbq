@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   helper_method :current_user_can_edit?
-  helper_method :current_user_can_subs?
+  helper_method :current_user_can_subscribe?
   helper_method :event_photo_for_email
 
   def configure_permitted_parameters
