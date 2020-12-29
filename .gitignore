@@ -23,7 +23,7 @@ letter_opener/
 !/tmp/pids/
 !/tmp/pids/.keep
 
-
+.idea/
 /public/assets
 .byebug_history
 
