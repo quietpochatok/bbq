@@ -15,9 +15,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'fog-aws'
 
-#gem 'dotenv-rails', groups: [:production]
-
-
+gem 'dotenv-rails', groups: [:development, :test]
 
 group :production do
   gem 'pg'
