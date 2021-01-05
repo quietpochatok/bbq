@@ -121,7 +121,7 @@ Rails.application.configure do
 # }
 
   config.action_mailer.default_url_options = { host: 'veganbbq.ru' }
-  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.delivery_method = :mailjet
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_deliveries = true
 end

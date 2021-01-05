@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'sheltered-retreat-16079'
+  default from: ENV["MAILJET_SENDER"]
   layout 'mailer'
 end
