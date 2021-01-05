@@ -14,6 +14,7 @@ set :deploy_to, '/home/deploy/apps/bbq'
 append :linked_files, '.env', 'config/master.key', 'config/database.yml'
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads'
 
+Rake::Task["deploy:assets:backup_manifest"].clear_actions
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
