@@ -61,6 +61,9 @@ ru:
   comments:
     comment:
       destroy_confirm: 'Вы уверены, что хотите удалить этот комментарий?'
+  photos:
+    photo:
+      destroy_confirm: 'Вы уверены, что хотите удалить эту фотографию?'
   # Склонятор ошибок
   error:
     one: '%{count} ошибка'

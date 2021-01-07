@@ -4,25 +4,27 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bbq</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
-    <script src="https://use.fontawesome.com/a75a7204ad.js"></script>
-              <script src="https://api-maps.yandex.ru/2.1/?apikey=d4eccc0c-6ed2-4aa3-95b9-3d0c6d24bd78&lang=ru_RU">
-    </script>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+  <title>Bbq</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
+  <script src="https://use.fontawesome.com/a75a7204ad.js"></script>
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=d4eccc0c-6ed2-4aa3-95b9-3d0c6d24bd78&lang=ru_RU">
+  </script>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all' %>
-    <%= javascript_pack_tag 'application' %>
-  </head>
+  <%= stylesheet_pack_tag 'application', media: 'all' %>
+  <%= javascript_pack_tag 'application' %>
+</head>
 
-  <body>
+<body>
+<div class="wrapper">
+  <div class="content">
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
         <%= link_to t('app.name'), root_path, class: 'navbar-brand' %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -53,9 +55,16 @@
         </div>
       </div>
     </div><!--</div> --> <!-- /container -->
-
-    <footer>
-      <p class="mt-6">&copy;<%= t 'app.company' %> <%= Time.now.year %></p>
+  </div>
+  <div class="footer bg-light text-center text-lg-start">
+    <footer class="bg-light text-center text-lg-start" >
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        <a class="text-dark" href=https://goodprogrammer.ru>&copy;<%= t('app.company') %> <%= Time.now.year %></a>
+      </div>
+      <!-- Copyright -->
     </footer>
-  </body>
+  </div>
+</div>
+</body>
 </html>
