@@ -5,7 +5,8 @@
 <hr/>
 
 <%= t '.event' %>
-<h3><%= link_to @event.title, event_path(@event) %></h3>
+<!--                    можно заменить на @event, не работает в text.erb-->
+<h3><%= link_to @event.title, events_url(@event) %></h3>
 
 <%= t '.datetime' %>
 <h4><%= l @event.datetime %></h4>
