@@ -1,10 +1,16 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
+
+  include Pundit
+
   # Настройка для работы Девайза, когда юзер правит профиль
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   helper_method :current_user_can_edit?
   helper_method :current_user_can_subscribe?
   helper_method :event_photo_for_email
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(
@@ -35,5 +41,14 @@ class ApplicationController < ActionController::Base
     else
       asset_pack_path('media/images/event.jpg')
     end
+  end
+
+  private
+
+  def user_not_authorized
+    # Перенаправляем юзера откуда пришел (или в корень сайта)
+    # с сообщением об ошибке (для секьюрности сообщение ЛУЧШЕ опустить!)
+    flash[:alert] = t('pundit.not_authorized')
+    redirect_to(request.referrer || root_path)
   end
 end

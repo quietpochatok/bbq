@@ -1,19 +1,27 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
 
-  before_action :set_event, only: [:show]
-  before_action :set_current_user_event, only: [:edit, :update, :destroy]
+  # здесь перечисляем те экшены, что зайдествованы в event_policy.rb
+  # иначе  скажет что не может найти и будет "unable to find policy `NilClassPolicy` for `nil`"
+  before_action :set_event, only: [:edit, :update, :destroy, :show]
+  #before_action :set_current_user_event, only: [:edit, :update, :destroy]
 
   # Проверка пин-кода перед отображением события
   before_action :password_guard!, only: [:show]
+  # Предохранитель от потери авторизации в нужных экшенах
+  after_action :verify_authorized, only: [:edit, :update, :destroy, :show]
+
+  # Предохранитель от неиспользования pundit scope в index экшене
+  after_action :verify_policy_scoped, only: :index
 
   # GET /events
   def index
-    @events = Event.all
+    @events = policy_scope(Event)
   end
 
   # GET /events/1
   def show
+    authorize @event
     # Болванка модели для формы добавления комментария
     @new_comment = @event.comments.build(params[:comment])
 
@@ -31,6 +39,7 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    authorize @event
   end
 
   # POST /events
@@ -46,6 +55,8 @@ class EventsController < ApplicationController
 
   # PATCH/PUT /events/1
   def update
+    authorize @event
+
     if @event.update(event_params)
       redirect_to @event, notice: I18n.t('controllers.events.updated')
     else
@@ -55,6 +66,8 @@ class EventsController < ApplicationController
 
   # DELETE /events/1
   def destroy
+    authorize @event
+
     @event.destroy
     redirect_to events_path, notice: I18n.t('controllers.events.destroyed')
   end
@@ -92,6 +105,7 @@ class EventsController < ApplicationController
       # Проверяем, верный ли в куках пин-код
       # Если нет — ругаемся и рендерим форму ввода пин-кода
       pincode = cookies.permanent["events_#{@event.id}_pincode"]
+
       unless @event.pincode_valid?(pincode)
         if params[:pincode].present?
           flash.now[:alert] = I18n.t('controllers.events.wrong_pincode')

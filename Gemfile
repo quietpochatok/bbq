@@ -15,6 +15,7 @@ gem 'rails-i18n', '~> 6.0.0'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'fog-aws'
+gem 'pundit', '~> 2.1'
 gem 'ed25519', '>= 1.2', '< 2.0'
 gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 gem "mailjet"
@@ -28,6 +29,10 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'sqlite3', '~> 1.4'
   #gem "letter_opener"
+
+  gem 'rspec-rails', '~> 3.4'
+  gem 'factory_bot_rails'
+  gem 'shoulda-matchers'
 end
 
 group :development do
