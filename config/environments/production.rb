@@ -1,6 +1,9 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.active_job.queue_adapter = :resque
+  config.active_job.queue_name_prefix = "bbq_#{Rails.env}"
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -34,7 +37,7 @@ Rails.application.configure do
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = :debug
+  config.log_level = :warn
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
@@ -96,29 +99,29 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
-# Базовый URL сайта для правильных ссылок в письмах
-# ПРОПИСЫВАЙТЕ свой!
-# config.action_mailer.default_url_options = {host: 'sheltered-retreat-16079.herokuapp.com'}
-#
-# # Ошибки рассылки юзеру не показываем
-# config.action_mailer.raise_delivery_errors = false
-#
-# # Делать рассылку писем (при false приложение только имитирует отправку)
-# config.action_mailer.perform_deliveries = true
-#
-# # Устанавливаем протокол, по которому отправлять (SMTP)
-# config.action_mailer.delivery_method = :smtp
-#
-# # А это для SendGrid
-# ActionMailer::Base.smtp_settings = {
-#   :address        => 'smtp.sendgrid.net',
-#   :port           => '587',
-#   :authentication => :plain,
-#   :user_name      => ENV['SENDGRID_USERNAME'],
-#   :password       => ENV['SENDGRID_PASSWORD'],
-#   :domain         => 'heroku.com',
-#   :enable_starttls_auto => true
-# }
+  # Базовый URL сайта для правильных ссылок в письмах
+  # ПРОПИСЫВАЙТЕ свой!
+  # config.action_mailer.default_url_options = {host: 'sheltered-retreat-16079.herokuapp.com'}
+  #
+  # # Ошибки рассылки юзеру не показываем
+  # config.action_mailer.raise_delivery_errors = false
+  #
+  # # Делать рассылку писем (при false приложение только имитирует отправку)
+  # config.action_mailer.perform_deliveries = true
+  #
+  # # Устанавливаем протокол, по которому отправлять (SMTP)
+  # config.action_mailer.delivery_method = :smtp
+  #
+  # # А это для SendGrid
+  # ActionMailer::Base.smtp_settings = {
+  #   :address        => 'smtp.sendgrid.net',
+  #   :port           => '587',
+  #   :authentication => :plain,
+  #   :user_name      => ENV['SENDGRID_USERNAME'],
+  #   :password       => ENV['SENDGRID_PASSWORD'],
+  #   :domain         => 'heroku.com',
+  #   :enable_starttls_auto => true
+  # }
 
   config.action_mailer.default_url_options = { host: 'veganbbq.ru' }
   config.action_mailer.delivery_method = :mailjet

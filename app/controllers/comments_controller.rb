@@ -87,7 +87,7 @@ end
       # Как и в подписках, берём EventMailer и его метод comment с параметрами
       # И отсылаем в том же потоке
       all_emails.each do |mail|
-        EventMailer.comment(event, comment, mail).deliver_now
+        EventMailer.comment(event, comment, mail).deliver_later
       end
     end
 end
