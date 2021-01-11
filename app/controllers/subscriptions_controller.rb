@@ -19,7 +19,7 @@ class SubscriptionsController < ApplicationController
       # Если сохранилось, отправляем письмо
       # Пишем название класса, потом метода и передаём параметры
       # И доставляем методом .deliver_now (то есть в этом же потоке)
-      EventMailer.subscription(@event, @new_subscription).deliver_later
+      new_subscribes(@new_subscription)
       # Если сохранилась успешно, редирект на страницу самого события
       redirect_to @event, notice: I18n.t('controllers.subscriptions.created')
     else
@@ -40,7 +40,7 @@ class SubscriptionsController < ApplicationController
     redirect_to @event, message
   end
 
-   private
+  private
     # Use callbacks to share common setup or constraints between actions.
   def set_subscription
     @subscription = @event.subscriptions.find(params[:id])
@@ -53,5 +53,9 @@ class SubscriptionsController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def subscription_params
     params.fetch(:subscription, {}).permit(:user_email, :user_name)
+  end
+
+  def new_subscribes(new_subscription)
+    EventMailSendlerJob.perform_later(new_subscription)
   end
 end
