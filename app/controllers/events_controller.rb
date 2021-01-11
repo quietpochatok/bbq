@@ -73,44 +73,44 @@ class EventsController < ApplicationController
   end
 
   private
-    # Будем искать событие не среди всех,
-    # а только у текущего пользователя по id
-    def set_current_user_event
-      @event = current_user.events.find(params[:id])
+  # Будем искать событие не среди всех,
+  # а только у текущего пользователя по id
+  def set_current_user_event
+    @event = current_user.events.find(params[:id])
+  end
+
+  def set_event
+    @event = Event.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  # редактируем параметры события
+  def event_params
+    # params.fetch(:event, {})
+    params.require(:event).permit(:title, :address, :datetime, :description, :pincode)
+  end
+
+  def password_guard!
+    # Если у события нет пин-кода, то охранять нечего
+    return true if @event.pincode.blank?
+    # Пин-код не нужен автору события
+    return true if signed_in? && current_user == @event.user
+
+    # Если нам передали код и он верный, сохраняем его в куки этого юзера
+    # Так юзеру не нужно будет вводить пин-код каждый раз
+    if params[:pincode].present? && @event.pincode_valid?(params[:pincode])
+      cookies.permanent["events_#{@event.id}_pincode"] = params[:pincode]
     end
 
-    def set_event
-      @event = Event.find(params[:id])
-    end
+    # Проверяем, верный ли в куках пин-код
+    # Если нет — ругаемся и рендерим форму ввода пин-кода
+    pincode = cookies.permanent["events_#{@event.id}_pincode"]
 
-    # Only allow a trusted parameter "white list" through.
-    # редактируем параметры события
-    def event_params
-      # params.fetch(:event, {})
-      params.require(:event).permit(:title, :address, :datetime, :description, :pincode)
-    end
-
-    def password_guard!
-      # Если у события нет пин-кода, то охранять нечего
-      return true if @event.pincode.blank?
-      # Пин-код не нужен автору события
-      return true if signed_in? && current_user == @event.user
-
-      # Если нам передали код и он верный, сохраняем его в куки этого юзера
-      # Так юзеру не нужно будет вводить пин-код каждый раз
-      if params[:pincode].present? && @event.pincode_valid?(params[:pincode])
-        cookies.permanent["events_#{@event.id}_pincode"] = params[:pincode]
+    unless @event.pincode_valid?(pincode)
+      if params[:pincode].present?
+        flash.now[:alert] = I18n.t('controllers.events.wrong_pincode')
       end
-
-      # Проверяем, верный ли в куках пин-код
-      # Если нет — ругаемся и рендерим форму ввода пин-кода
-      pincode = cookies.permanent["events_#{@event.id}_pincode"]
-
-      unless @event.pincode_valid?(pincode)
-        if params[:pincode].present?
-          flash.now[:alert] = I18n.t('controllers.events.wrong_pincode')
-        end
-        render 'password_form'
-      end
+      render 'password_form'
     end
+  end
 end
