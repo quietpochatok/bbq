@@ -73,11 +73,6 @@ class EventsController < ApplicationController
   end
 
   private
-  # Будем искать событие не среди всех,
-  # а только у текущего пользователя по id
-  def set_current_user_event
-    @event = current_user.events.find(params[:id])
-  end
 
   def set_event
     @event = Event.find(params[:id])
@@ -92,9 +87,9 @@ class EventsController < ApplicationController
 
   def password_guard!
     # Если у события нет пин-кода, то охранять нечего
-    return true if @event.pincode.blank?
-    # Пин-код не нужен автору события
-    return true if signed_in? && current_user == @event.user
+    # return true if @event.pincode.blank?
+    # # Пин-код не нужен автору события
+    # return true if signed_in? && current_user == @event.user
 
     # Если нам передали код и он верный, сохраняем его в куки этого юзера
     # Так юзеру не нужно будет вводить пин-код каждый раз
@@ -104,9 +99,9 @@ class EventsController < ApplicationController
 
     # Проверяем, верный ли в куках пин-код
     # Если нет — ругаемся и рендерим форму ввода пин-кода
-    pincode = cookies.permanent["events_#{@event.id}_pincode"]
+    # pincode = cookies.permanent["events_#{@event.id}_pincode"]
 
-    unless @event.pincode_valid?(pincode)
+    unless policy(@event).show?
       if params[:pincode].present?
         flash.now[:alert] = I18n.t('controllers.events.wrong_pincode')
       end

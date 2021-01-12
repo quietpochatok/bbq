@@ -8,7 +8,7 @@ class EventPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    user_can_see_event?(record)
   end
 
   def update?
@@ -27,5 +27,12 @@ class EventPolicy < ApplicationPolicy
 
   def user_is_owner?(model)
     user.present? && (model.try(:user) == user)
+  end
+
+  def user_can_see_event?(model)
+    pincode = cookies.permanent["events_#{model.id}_pincode"]
+
+    model.pincode.blank? || user_is_owner?(model) ||
+      (model.pincode.presence && model.pincode_valid?(pincode))
   end
 end

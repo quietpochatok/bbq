@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
-
   include Pundit
+  protect_from_forgery with: :exception
 
   # Настройка для работы Девайза, когда юзер правит профиль
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -41,6 +40,10 @@ class ApplicationController < ActionController::Base
     else
       asset_pack_path('media/images/event.jpg')
     end
+  end
+
+  def pundit_user
+    UserContext.new(current_user, cookies)
   end
 
   private
