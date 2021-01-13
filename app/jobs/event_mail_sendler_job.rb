@@ -10,13 +10,9 @@ class EventMailSendlerJob < ApplicationJob
     # Как и в подписках, берём EventMailer и его метод comment с параметрами
     # И отсылаем в том же потоке
     if class_object.is_a?(Comment)
-      all_emails.each do |mail|
-        EventMailer.comment(event, class_object, mail).deliver_later
-      end
+      all_emails.each { |mail| EventMailer.comment(event, class_object, mail).deliver_later }
     elsif class_object.is_a?(Photo)
-      all_emails.each do |mail|
-        EventMailer.photo(event, class_object, mail).deliver_later
-      end
+      all_emails.each { |mail| EventMailer.photo(event, class_object, mail).deliver_later }
     else class_object.is_a?(Subscription)
       EventMailer.subscription(event, class_object).deliver_later
     end

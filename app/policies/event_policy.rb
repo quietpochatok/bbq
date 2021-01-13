@@ -30,7 +30,7 @@ class EventPolicy < ApplicationPolicy
   end
 
   def user_can_see_event?(model)
-    pincode = cookies.permanent["events_#{model.id}_pincode"]
+    pincode = cookies["events_#{model.id}_pincode"]
 
     model.pincode.blank? || user_is_owner?(model) ||
       (model.pincode.presence && model.pincode_valid?(pincode))
