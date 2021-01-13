@@ -18,8 +18,8 @@ class SubscriptionsController < ApplicationController
     if @new_subscription.save
       # Если сохранилось, отправляем письмо
       # Пишем название класса, потом метода и передаём параметры
-      # И доставляем методом .deliver_later
-      EventMailSendlerJob.perform_later(@new_subscription)
+      # И доставляем методом .deliver_now (то есть в этом же потоке)
+      new_subscribes(@new_subscription)
       # Если сохранилась успешно, редирект на страницу самого события
       redirect_to @event, notice: I18n.t('controllers.subscriptions.created')
     else
@@ -41,7 +41,7 @@ class SubscriptionsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
+    # Use callbacks to share common setup or constraints between actions.
   def set_subscription
     @subscription = @event.subscriptions.find(params[:id])
   end
@@ -53,5 +53,9 @@ class SubscriptionsController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def subscription_params
     params.fetch(:subscription, {}).permit(:user_email, :user_name)
+  end
+
+  def new_subscribes(new_subscription)
+    EventMailSendlerJob.perform_later(new_subscription)
   end
 end
