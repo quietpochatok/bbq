@@ -24,15 +24,15 @@
             </div>
 
             <div class="field">
-              <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password", class: "form-control mb-3 mt-3"%>
-              <span><%= minimum_password_length%></span>
+              <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password", class: "form-control mb-1 mt-3"%>
+              <em><strong><%= minimum_password_length%></strong></em>
             </div>
             <div class="field">
               <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password confirmation", class: "form-control mb-3 mt-3" %>
             </div>
 
             <div class="actions">
-              <%= f.submit "Sign up", class: "btn btn-primary"%>
+              <%= f.submit t('views.devise.registrations.new'), class: "btn btn-primary"%>
             </div>
           <% end %>
         </div>

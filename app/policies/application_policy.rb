@@ -1,5 +1,5 @@
 class ApplicationPolicy
-  # record вляется моделью, к примеру Event
+  # record яляется моделью, к примеру Event
   attr_reader :user, :record, :context, :cookies
 
   delegate :user, to: :context

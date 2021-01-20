@@ -7,7 +7,7 @@ module ApplicationHelper
         concat message
       end)
     end
-  nil
+    nil
   end
 
   def user_avatar(user)
@@ -53,15 +53,16 @@ module ApplicationHelper
 
   def minimum_password_length
     if @minimum_password_length
-     "Password #{@minimum_password_length} characters minimum"
+     " Пароль минимум #{@minimum_password_length} символов"
     end
   end
 
   def fa_icon(icon_class)
-     content_tag 'span', '', class: "fa fa-#{icon_class}"
+    content_tag 'span', '', class: "fa fa-#{icon_class}"
   end
 
-private
+  private
+
   def bootstrap_class_for(flash_type)
     { success: "alert-success", error: "alert-danger", alert: "alert-warning", notice: "alert-success" }.stringify_keys[flash_type.to_s] || flash_type.to_s
   end

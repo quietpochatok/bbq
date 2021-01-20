@@ -8,7 +8,6 @@ class SubscriptionsController < ApplicationController
   # Задаем подписку, которую юзер хочет удалить
   before_action :set_subscription, only: [:destroy]
 
-
   def create
     # Болванка для новой подписки
     @new_subscription = @event.subscriptions.build(subscription_params)
@@ -50,7 +49,10 @@ class SubscriptionsController < ApplicationController
     @event = Event.find(params[:event_id])
   end
 
-  # Only allow a trusted parameter "white list" through.
+  # на событие может подписываться не только анонимный юзер, но и залогиненный.
+  # Когда подписывается залогиненный, то нет смысла показывать форму,
+  # мы просто должны показать, что подписка появилась.
+  # То есть параметр :subscription необязательный, поэтому вместо require используем метод fetch
   def subscription_params
     params.fetch(:subscription, {}).permit(:user_email, :user_name)
   end

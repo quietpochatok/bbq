@@ -92,3 +92,16 @@ ru:
 
   pundit:
     not_authorized: 'Это не разрешено для вас!'
+
+  views:
+    devise:
+      sessions:
+        new:
+          welcome: 'Добро пожаловать!'
+          attention: 'Пожалуйста, заполните верно поля'
+      registrations:
+        new: 'Зарегистрироваться'
+    shared:
+      links:
+        log_in: 'Войти'
+        forgot_password: 'Забыли пароль? Жмакни здесь тогда'
