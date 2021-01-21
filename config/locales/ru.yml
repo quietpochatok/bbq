@@ -57,6 +57,7 @@ ru:
   app:
     name: 'Шашлыки'
     company: 'Хороший программист'
+    developer: 'Хасанов Дамир'
     
   comments:
     comment:
@@ -101,6 +102,8 @@ ru:
           attention: 'Пожалуйста, заполните верно поля'
       registrations:
         new: 'Зарегистрироваться'
+      passwords:
+        new: 'Отправить инструкции для восстановления пароля'
     shared:
       links:
         log_in: 'Войти'

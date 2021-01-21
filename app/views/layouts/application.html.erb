@@ -60,7 +60,13 @@
     <footer class="bg-light text-center text-lg-start" >
       <!-- Copyright -->
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-        <a class="text-dark" href=https://goodprogrammer.ru>&copy;<%= t('app.company') %> <%= Time.now.year %></a>
+        <ul>
+          <li style="list-style-type: none;">
+            <a class="text-dark" style="text-decoration:none;" href=https://goodprogrammer.ru><%= t('app.company') %> </a>
+              и
+            <a class="text-dark" style="text-decoration:none;" href=https://github.com/quietpochatok><%= t('app.developer')%> &copy;<%= Time.now.year %></a>
+          </li>
+        </ul>
       </div>
       <!-- Copyright -->
     </footer>
