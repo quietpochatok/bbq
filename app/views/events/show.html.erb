@@ -45,7 +45,9 @@
         <!-- рендер для отображения фоток загруженных на странице события -->
             <div class="event-photos">
               <div class="event-photos-gallery">
+                <div class="row">
                 <%= render partial: 'photos/photo', collection: @event.photos.except(@new_photo) %>
+                </div>
               </div>
               <div class="event-photo-form">
                 <%= render partial: 'photos/form', locals: {photo: @new_photo || @event.photos.build} %>
