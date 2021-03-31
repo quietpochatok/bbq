@@ -6,25 +6,7 @@ class CommentsController < ApplicationController
   # только для удаления, чтобы знать, какой коммент сносить:
   before_action :set_comment, only: [:destroy]
 
-  # # GET /comments
-  # def index
-  #   @comments = Comment.all
-  # end
-
-  # # GET /comments/1
-  # def show
-  # end
-
-  # # GET /comments/new
-  # def new
-  #   @comment = Comment.new
-  # end
-
-  # # GET /comments/1/edit
-  # def edit
-  # end
-
-    # POST /comments
+  # POST /comments
   def create
     # Создаём объект @new_comment из @event
     @new_comment = @event.comments.build(comment_params)

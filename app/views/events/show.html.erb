@@ -8,12 +8,12 @@
 
       <div class="event-info-inner row">
         <div class="col-12">
-          <div class="event-description">
+          <div class="event-description mt-2">
             <h1><%= @event.title %></h1>
             <!-- Нужно указать формат , в геме russian всё это есть, а i18n предоставляет нам специальный хелпер l -->
-            <h3><%= l @event.datetime, format: :short %></h3>
-            <h3><small><%= link_to @event.address,
-                "https://yandex.ru/maps/?text=#{@event.address}" %></small></h3>
+            <h4><%= l @event.datetime, format: :short %></h4>
+            <h4><small><%= link_to @event.address,
+                "https://yandex.ru/maps/?text=#{@event.address}" %></small></h4>
             <p><%= @event.description %></p>
           </div>
 
@@ -93,6 +93,4 @@
         <% end %>
       </div>
   </div>
-
-
 </div>

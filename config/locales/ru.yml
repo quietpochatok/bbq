@@ -9,7 +9,6 @@ ru:
       comment: 'Комментарий'
       photo: 'Фотография'
 
-
     # Перевод атрибутов моделей
     attributes:
       user:
@@ -32,6 +31,15 @@ ru:
         user_email: 'Ваш email'
       photo:
         photo: 'Фотография'
+
+    errors:
+      models:
+        subscription:
+          attributes:
+            user_email:
+              email_error: ' уже занят, попробуйте другой!'
+            event:
+              event_error: ' ваш, вы не можете на себя подписаться!'
 
   controllers:
     events:
@@ -102,6 +110,8 @@ ru:
 
   views:
     devise:
+      сommon_phrases:
+        greet_messsage: 'Привет'
       sessions:
         new:
           welcome: 'Добро пожаловать!'

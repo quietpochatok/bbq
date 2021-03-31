@@ -21,7 +21,6 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
-
   private
 
   def set_name
@@ -31,11 +30,7 @@ class User < ApplicationRecord
   # этот метод позволяет пользователю после регистрации присвоить комменты и другие данные, которые он оставлял
   # ранее до регистрации и был просто пользователем с именем и почтой в форме подписки на ивент.
   def link_subscriptions
-    Subscription.where(user_id: nil, user_email: self.email)
-      .update_all(user_id: self.id)
-  end
-
-  def send_devise_notification(notification, *args)
-    devise_mailer.send(notification, self, *args).deliver_later
+    Subscription.where(user_id: nil, user_email: email)
+      .update_all(user_id: id)
   end
 end

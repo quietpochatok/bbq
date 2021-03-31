@@ -41,13 +41,13 @@ class Subscription < ApplicationRecord
 
   def check_email_for_subs
     if User.exists?(email: user_email)
-      errors.add(:email, 'извините, но данный email уже занят')
+      errors.add(:user_email, :email_error)
     end
   end
 
   def subscriber_verification_to_event_owner?
     if event.user == user
-      errors.add(:event, 'извините, но вы не можете на себя подписаться')
+      errors.add(:event, :event_error)
     end
   end
 end
